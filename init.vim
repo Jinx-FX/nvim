@@ -83,7 +83,7 @@ set softtabstop=4
 set autoindent " 继承前一行的缩进方式，适用于多行注释 "
 set cindent " c格式的缩进
 
-set clipboard=unnamedplus "让nvim可以使用系统剪贴板
+set clipboard+=unnamedplus "让nvim可以使用系统剪贴板
 
 " 显示空格
 set list
