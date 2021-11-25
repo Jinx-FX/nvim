@@ -37,13 +37,22 @@ source ~/.config/nvim/_machine_specific.vim
 " 设置字体 和 字体大小;与终端一直，无法修改
 " set guifont=Source\ Code\ Pro\ 12
 
-set nocompatible " 让 vim 抛弃以前的不常用功能
+" yank and paste
+" 访问系统剪贴板 neovim need 系统剪贴板工具
+" 用包管理器安装一个用于管理系统剪贴板的命令行工具(xsel或xclip)即可!
+" 在终端中执行命令:sudo pacman -S xsel
+set clipboard+=unnamedplus "让nvim可以使用系统剪贴板
+" copy system clipboard
+vnoremap ,y "+y
+" paste system clipboard
+nnoremap ,p "+p
 
+set nocompatible " 让 vim 抛弃以前的不常用功能
 " 提高 vim 的兼容性
 filetype on
 filetype indent on
-filetype plugin on 
-filetype plugin indent on 
+filetype plugin on
+filetype plugin indent on
 
 set mouse=a " 可使用
 syntax on " 自动语法高亮
@@ -82,8 +91,6 @@ set shiftwidth=4 " 设置自动缩进长度为4空格 "
 set softtabstop=4
 set autoindent " 继承前一行的缩进方式，适用于多行注释 "
 set cindent " c格式的缩进
-
-set clipboard+=unnamedplus "让nvim可以使用系统剪贴板
 
 " 显示空格
 set list
