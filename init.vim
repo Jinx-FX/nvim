@@ -8,7 +8,6 @@
 
 "-----------------------------------------------------------------
 
-
 " ===
 " === Basic Mappings
 " ===
@@ -20,9 +19,16 @@ noremap ; :
 "normal: Ctrl+c : qa! press<enter> to quit nvim and abandon all you had done
 "insert: Ctrl+c : <esc>
 
-
 "-----------------------------------------------------------------
 
+" ===
+" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+" ===
+let has_machine_specific_file = 1
+
+source ~/.config/nvim/_machine_specific.vim
+
+"-----------------------------------------------------------------
 
 " ===
 " === Editor behavior
@@ -83,7 +89,6 @@ set clipboard=unnamedplus "让nvim可以使用系统剪贴板
 set list
 set listchars=tab:\|\ ,trail:▫
 
-
 " 设置编码 "
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
@@ -104,9 +109,7 @@ set shortmess+=c
 " Recently vim can merge signcolumn and number column into one
 set signcolumn=number
 
-
 "-----------------------------------------------------------------
-
 
 " ===
 " === Window management
@@ -145,7 +148,6 @@ noremap <LEADER>q <C-w>j:q<CR>
 
 "-----------------------------------------------------------------
 
-
 " ===
 " === Tab management
 " ===
@@ -160,7 +162,6 @@ noremap dsh :-tabmove<CR>
 noremap dsl :+tabmove<CR>
 
 "-----------------------------------------------------------------
-
 
 " ===
 " === Other useful stuff
@@ -218,10 +219,7 @@ func! CompileRunGcc()
 	endif
 endfunc
 
-
-
 "-----------------------------------------------------------------
-
 
 " ===" 插件管理 "
 " === Install Plugins with Vim-Plug
@@ -231,13 +229,14 @@ call plug#begin('~/.config/nvim/plugged')
 " Auto Complete "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" color-theme
-Plug 'altercation/vim-colors-solarized'
+" Pretty Dress
+Plug 'ajmwagar/vim-deus'
 
 " Editor Enhancement
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
 Plug 'majutsushi/tagbar' " 函数和变量信息
 Plug 'vim-airline/vim-airline' "状态栏
+Plug 'preservim/nerdtree' "文件树
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -245,21 +244,22 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
 
 call plug#end()
 
-
-
 "-----------------------------------------------------------------
-
 
 " ===
 " === coc.nvim
 " === need nodejs,npm install neovim yarn
+" lsp : language support protocol [语言支持协议]
 let g:coc_global_extensions = [
-            \ 'coc-json',
             \ 'coc-vimlsp',
             \ 'coc-clangd',
             \ 'coc-python',
             \ 'coc-pyright',
-            \ 'coc-actions']
+            \ 'coc-actions',
+            \ 'coc-tsserver',
+            \ 'coc-json',
+            \ 'coc-html',
+            \ 'coc-sh']
 
 " coc插件， 使用 tab 进行补全 
 inoremap <silent><expr> <TAB>
@@ -267,7 +267,6 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -301,12 +300,12 @@ function! Show_documentation()
 	endif
 endfunction
 
+" Formatting selected code. 不怎么清楚
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
 
 "-----------------------------------------------------------------
 
@@ -315,22 +314,23 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " === 查看函数列表，需要ctags程序
 nmap <F8> :TagbarToggle<CR>
 
-
 "-----------------------------------------------------------------
 
+" ===
+" === Dress my nvim
+" === vim-deus
+set t_Co=256
+set termguicolors
 
-" ===
-" === vim-colors-solarized'
-" ===
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-call togglebg#map("<F5>") " 切换 light 和 dark
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set background=dark    " Setting dark mode
+colorscheme deus
+let g:deus_termcolors=256
 
 
 "-----------------------------------------------------------------
-
 
 " ===
 " === vim-instant-markdown
@@ -363,3 +363,12 @@ noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭
 
 "-----------------------------------------------------------------
 
+" ===
+" === nerdtree
+" === 几个功能都差不多，不过 *Toggle 使用最好，可以控制开启和关闭
+" nnoremap tt :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR> " 返回当前文件路径
+
+"-----------------------------------------------------------------
