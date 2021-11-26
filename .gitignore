@@ -1,4 +1,3 @@
-plugged
-backup
-undo
+plugged/
+tmp/
 _machine_specific.vim
