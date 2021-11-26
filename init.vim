@@ -14,9 +14,14 @@
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
 noremap ; :
+
+" === useful command
 "normal: Ctrl+o ：回到之前光标所在位置
 "normal: Ctrl+i ：回到之后光标所在位置
 "normal: Ctrl+c : qa! press<enter> to quit nvim and abandon all you had done
+"normal: zz : 让当前行移动到屏幕中央
+"normal: u : 撤销
+"normal: Ctrl+r: 反撤销
 "insert: Ctrl+c : <esc>
 
 "-----------------------------------------------------------------
@@ -25,7 +30,10 @@ noremap ; :
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 " ===
 let has_machine_specific_file = 1
-
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+	let has_machine_specific_file = 0
+	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
 source ~/.config/nvim/_machine_specific.vim
 
 "-----------------------------------------------------------------
@@ -41,7 +49,7 @@ source ~/.config/nvim/_machine_specific.vim
 " 访问系统剪贴板 neovim need 系统剪贴板工具
 " 用包管理器安装一个用于管理系统剪贴板的命令行工具(xsel或xclip)即可!
 " 在终端中执行命令:sudo pacman -S xsel
-set clipboard+=unnamedplus "让nvim可以使用系统剪贴板
+" set clipboard+=unnamedplus "让nvim可以使用系统剪贴板
 " copy system clipboard
 vnoremap ,y "+y
 " paste system clipboard
@@ -85,6 +93,17 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 
 " 让光标回到最后一次关闭文件所在位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" 保留文件修改历史 (git 忽略) tmp/ 存放缓存记录
+silent !mkdir -p $HOME/.config/nvim/tmp/backup
+silent !mkdir -p $HOME/.config/nvim/tmp/undo
+"silent !mkdir -p $HOME/.config/nvim/tmp/sessions
+set backupdir=$HOME/.config/nvim/tmp/backup,.
+set directory=$HOME/.config/nvim/tmp/backup,.
+if has('persistent_undo')
+	set undofile
+	set undodir=$HOME/.config/nvim/tmp/undo,.
+endif
 
 set number " 显示行号
 set relativenumber " 相对行号
@@ -178,6 +197,26 @@ noremap dsl :+tabmove<CR>
 " === Other useful stuff
 " ===
 
+" Opening a terminal window
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+
+" === Terminal Behaviors
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert " 打开终端默认输入
+
+" Spelling Check with <space>sc
+noremap <LEADER>sc :set spell!<CR>
+
+" find and replace (需要'g')
+noremap \s :%s//g<left><left>
+
+" press <F10> to show hlgroup
+function! SynGroup()
+	let l:s = synID(line('.'), col('.'), 1)
+	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+map <F10> :call SynGroup()<CR>
+
 " Compile function
 noremap r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -208,7 +247,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'python'
 		set splitbelow
 		:sp
-		:term python3 %
+		:term ~/.conda/envs/ar/bin/python %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
 	elseif &filetype == 'markdown'
@@ -248,6 +287,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
 Plug 'majutsushi/tagbar' " 函数和变量信息
 Plug 'vim-airline/vim-airline' "状态栏
 Plug 'preservim/nerdtree' "文件树
+Plug 'mbbill/undotree' "文件修改历史
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -295,6 +335,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <leader> rn <Plug>(coc-rename)  " 变量重命名
 
 " show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
@@ -311,6 +352,7 @@ function! Show_documentation()
 endfunction
 
 " Formatting selected code. 不怎么清楚
+" Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
@@ -380,5 +422,18 @@ noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭
 " nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR> " 返回当前文件路径
+
+"-----------------------------------------------------------------
+
+" ===
+" === Undotree
+" ===
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
 
 "-----------------------------------------------------------------
