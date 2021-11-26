@@ -183,7 +183,7 @@ noremap <LEADER>q <C-w>j:q<CR>
 " ===
 " Create a new tab with dn : tabnew
 noremap dn :tabe<CR>
-noremap dN :tab split<CR>
+noremap dm :tab split<CR>
 " Move around tabs with dh:tab-left and dl:tab-right
 noremap dh :-tabnext<CR>
 noremap dl :+tabnext<CR>
@@ -197,7 +197,8 @@ noremap dsl :+tabmove<CR>
 " === Other useful stuff
 " ===
 
-" Opening a terminal window
+" === term
+" === Opening a terminal window
 noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 
 " === Terminal Behaviors
@@ -288,10 +289,12 @@ Plug 'majutsushi/tagbar' " 函数和变量信息
 Plug 'vim-airline/vim-airline' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
+Plug 'Yggdroot/indentLine' "缩进增强显示
 
 " Markdown
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] } " 表格
+Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " 生成目录
 
 call plug#end()
 
@@ -435,5 +438,29 @@ let g:undotree_ShortIndicators = 1
 let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
+
+"-----------------------------------------------------------------
+
+" ===
+" === indentLine
+" ===
+let g:indentLine_char = '¦'
+let g:indentLine_color_term = 238
+let g:indentLine_color_gui = '#FFB6C1'
+
+"-----------------------------------------------------------------
+
+" ===
+" === vim-markdown-toc
+" ===
+" ==使用
+"   光标处生成- :GenTocGFM 生成GFM风格的目录
+"             - :GenTocRedcarpet 生成Redcarpet风格的目录
+"             - :其他，GenTocGitlab, GenTocMarked
+"   删除      - :RemoveToc
+
+let g:vmt_cycle_list_item_markers = 1
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
 
 "-----------------------------------------------------------------
