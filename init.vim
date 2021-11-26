@@ -59,7 +59,10 @@ syntax on " 自动语法高亮
 set scrolloff=5 " 底部永远预留 5 行
 set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set hlsearch " 搜索时高亮显示被找到的文本
+set incsearch " 搜索时一边输入，一边高亮
 set wildmenu "命令补全
+
+set autochdir " 让nvim在当前文件的文件目录执行相关命令
 
 " 设置在状态行显示的信息
 " %F 完整文件路径名
@@ -77,31 +80,32 @@ set wildmenu "命令补全
 " %{...} 评估表达式的值，并用值代替
 " %{"[fenc=".(&fenc==""?&enc:&fenc).((exists("+bomb") && &bomb)?"+":"")."]"} 显示文件编码
 " %{&ff} 显示文件类型
-set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
+set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\
 set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 
 " 让光标回到最后一次关闭文件所在位置
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-set number " 显示行号 "
+set number " 显示行号
+set relativenumber " 相对行号
 
 set expandtab
-set tabstop=4 " 设置Tab长度为4空格 "
-set shiftwidth=4 " 设置自动缩进长度为4空格 "
+set tabstop=4 " 设置Tab长度为4空格
+set shiftwidth=4 " 设置自动缩进长度为4空格
 set softtabstop=4
-set autoindent " 继承前一行的缩进方式，适用于多行注释 "
+set autoindent " 继承前一行的缩进方式，适用于多行注释
 set cindent " c格式的缩进
 
 " 显示空格
 set list
 set listchars=tab:\|\ ,trail:▫
 
-" 设置编码 "
+" 设置编码
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
-set showmatch " 显示括号匹配 "
+set showmatch " 显示括号匹配
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -328,6 +332,7 @@ nmap <F8> :TagbarToggle<CR>
 set t_Co=256
 set termguicolors
 
+let &t_ut = ''
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
