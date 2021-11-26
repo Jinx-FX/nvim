@@ -260,7 +260,6 @@ call plug#end()
 let g:coc_global_extensions = [
             \ 'coc-vimlsp',
             \ 'coc-clangd',
-            \ 'coc-python',
             \ 'coc-pyright',
             \ 'coc-actions',
             \ 'coc-tsserver',
