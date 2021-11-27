@@ -45,7 +45,7 @@ source ~/.config/nvim/_machine_specific.vim
 " 设置字体 和 字体大小;与终端一直，无法修改
 " set guifont=Source\ Code\ Pro\ 12
 
-" yank and paste
+" == yank and paste
 " 访问系统剪贴板 neovim need 系统剪贴板工具
 " 用包管理器安装一个用于管理系统剪贴板的命令行工具(xsel或xclip)即可!
 " 在终端中执行命令:sudo pacman -S xsel
@@ -290,6 +290,7 @@ Plug 'vim-airline/vim-airline' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
 Plug 'Yggdroot/indentLine' "缩进增强显示
+" Plug 'preservim/nerdcommenter' " 注释(还未使用)
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
@@ -338,7 +339,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader> rn <Plug>(coc-rename)  " 变量重命名
+nmap <leader>rn <Plug>(coc-rename)  " 变量重命名
 
 " show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
