@@ -5,3 +5,6 @@ let g:python3_host_prog='usr/bin/python3'
 
 let g:mkdp_browser = 'chromium'
 let g:mkdp_browserfunc = 'open '
+
+let g:barbaric_ime = 'fcitx'
+
