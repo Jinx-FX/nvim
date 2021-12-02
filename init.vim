@@ -294,14 +294,16 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Pretty Dress
-Plug 'ajmwagar/vim-deus'
+Plug 'theniceboy/nvim-deus'
+
+" 状态栏等界面信息
+Plug 'majutsushi/tagbar' " 函数和变量信息
+Plug 'theniceboy/eleline.vim' "状态栏
+Plug 'preservim/nerdtree' "文件树
+Plug 'mbbill/undotree' "文件修改历史
 
 " Editor Enhancement
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
-Plug 'majutsushi/tagbar' " 函数和变量信息
-Plug 'vim-airline/vim-airline' "状态栏
-Plug 'preservim/nerdtree' "文件树
-Plug 'mbbill/undotree' "文件修改历史
 Plug 'Yggdroot/indentLine' "缩进增强显示
 " Plug 'preservim/nerdcommenter' " 注释(还未使用)
 
@@ -386,10 +388,19 @@ nmap <F8> :TagbarToggle<CR>
 "-----------------------------------------------------------------
 
 " ===
+" === eleline.vim
+" ===
+" 若有 powerline font 字体，置为 1
+let g:eleline_powerline_fonts = 0
+
+"-----------------------------------------------------------------
+" ===
 " === Dress my nvim
 " === vim-deus
 set t_Co=256
-set termguicolors
+
+set termguicolors " enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let &t_ut = ''
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -398,6 +409,9 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme deus
 let g:deus_termcolors=256
+
+hi NonText ctermfg=gray guifg=grey10
+hi SpecialKey ctermfg=blue guifg=grey70
 
 "-----------------------------------------------------------------
 
