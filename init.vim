@@ -148,7 +148,8 @@ set updatetime=100
 set shortmess+=c
 
 " Recently vim can merge signcolumn and number column into one
-set signcolumn=number
+" 如果=number则为上述效果，即各种效果(如git，number)在同一列，不是很喜欢
+set signcolumn=yes
 
 "-----------------------------------------------------------------
 
@@ -301,6 +302,7 @@ Plug 'majutsushi/tagbar' " 函数和变量信息
 Plug 'theniceboy/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
+Plug 'mg979/vim-xtabline' "精致的顶栏
 
 " Editor Enhancement
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
@@ -311,6 +313,9 @@ Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] } " 表格
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " 生成目录
+
+" Git
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -356,8 +361,11 @@ nmap <silent> gi <Plug>(coc-implementation) "待办事项清单
 nmap <silent> gr <Plug>(coc-references) "列出参考列表
 nmap <leader>rn <Plug>(coc-rename)  " 变量重命名
 
-" show documentation in preview window.
-nnoremap <silent> M :call <SID>show_documentation()<CR>
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Remap for do codeAction of selected region
 " Formatting selected code.
@@ -387,6 +395,17 @@ nmap <F8> :TagbarToggle<CR>
 
 "-----------------------------------------------------------------
 
+" ===
+" === xtabline
+" ===
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.last_open_first = 1
+noremap \p :echo expand('%:p')<CR> "显示当前位置
+
+"-----------------------------------------------------------------
 " ===
 " === eleline.vim
 " ===
@@ -490,5 +509,26 @@ let g:indentLine_color_gui = '#FFB6C1'
 let g:vmt_cycle_list_item_markers = 1
 let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
+
+"-----------------------------------------------------------------
+
+" ==
+" == GitGutter
+" ==
+" let g:gitgutter_signs = 0
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '░'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▒'
+" autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR> "折叠所有除代码块以外的行
+nnoremap H :GitGutterPreviewHunk<CR> "在当前行显示 Git 代码块
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR> "去往上一个git代码块
+nnoremap <LEADER>g= :GitGutterNextHunk<CR> "去往下一个git代码块
 
 "-----------------------------------------------------------------
