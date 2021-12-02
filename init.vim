@@ -215,6 +215,8 @@ noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " === Terminal Behaviors
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert " 打开终端默认输入
+tnoremap <C-N> <C-\><C-N> "退出终端输入模式
+tnoremap <C-O> <C-\><C-N><C-O> "退出终端
 
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
@@ -346,10 +348,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " 查看函数信息
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition) "转到定义
+nmap <silent> gy <Plug>(coc-type-definition) "转到类型定义
+nmap <silent> gi <Plug>(coc-implementation) "待办事项清单
+nmap <silent> gr <Plug>(coc-references) "列出参考列表
 nmap <leader>rn <Plug>(coc-rename)  " 变量重命名
 
 " show documentation in preview window.
@@ -456,7 +458,7 @@ let g:undotree_SplitWidth = 24
 " ===
 " === indentLine
 " ===
-let g:indentLine_char = '¦'
+let g:indentLine_char = '|'
 let g:indentLine_color_term = 238
 let g:indentLine_color_gui = '#FFB6C1'
 
