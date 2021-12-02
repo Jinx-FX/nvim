@@ -181,15 +181,15 @@ noremap <LEADER>q <C-w>j:q<CR>
 " ===
 " === Tab management
 " ===
-" Create a new tab with dn : tabnew
-noremap dn :tabe<CR>
-noremap dm :tab split<CR>
-" Move around tabs with dh:tab-left and dl:tab-right
-noremap dh :-tabnext<CR>
-noremap dl :+tabnext<CR>
-" Move the tabs with dsh:tabmove-left and dsl:tabmove-right
-noremap dsh :-tabmove<CR>
-noremap dsl :+tabmove<CR>
+" Create a new tab with tn : tabnew
+noremap tn :tabe<CR>
+noremap tm :tab split<CR>
+" Move around tabs with th:tab-left and tl:tab-right
+noremap th :-tabnext<CR>
+noremap tl :+tabnext<CR>
+" Move the tabs with tsh:tabmove-left and tsl:tabmove-right
+noremap tsh :-tabmove<CR>
+noremap tsl :+tabmove<CR>
 
 "-----------------------------------------------------------------
 
