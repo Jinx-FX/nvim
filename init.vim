@@ -298,6 +298,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'theniceboy/nvim-deus'
 
 " 状态栏等界面信息
+Plug 'mhinz/vim-startify' "开始菜单
 Plug 'majutsushi/tagbar' " 函数和变量信息
 Plug 'theniceboy/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
