@@ -300,7 +300,7 @@ Plug 'theniceboy/nvim-deus'
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
 Plug 'majutsushi/tagbar' " 函数和变量信息
-Plug 'theniceboy/eleline.vim' "状态栏
+Plug 'liuchengxu/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
 Plug 'mg979/vim-xtabline' "精致的顶栏
