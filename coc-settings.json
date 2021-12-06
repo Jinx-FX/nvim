@@ -74,5 +74,8 @@
         "cs",
         "prisma"
     ],
-    "python.pythonPath": "~/.conda/envs/ar/bin/python"
+    "python.pythonPath": "~/.conda/envs/ar/bin/python",
+    "translator.engines": [
+        "youdao"
+    ]
 }

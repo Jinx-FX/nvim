@@ -300,7 +300,7 @@ Plug 'theniceboy/nvim-deus'
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
 Plug 'majutsushi/tagbar' " 函数和变量信息
-Plug 'liuchengxu/eleline.vim' "状态栏
+Plug 'Jinx-FX/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
 Plug 'mg979/vim-xtabline' "精致的顶栏
@@ -308,7 +308,7 @@ Plug 'mg979/vim-xtabline' "精致的顶栏
 " Editor Enhancement
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
 Plug 'Yggdroot/indentLine' "缩进增强显示
-" Plug 'preservim/nerdcommenter' " 注释(还未使用)
+Plug 'preservim/nerdcommenter' " 注释
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
@@ -329,12 +329,13 @@ call plug#end()
 let g:coc_global_extensions = [
             \ 'coc-vimlsp',
             \ 'coc-clangd',
-            \ 'coc-pyright',
             \ 'coc-actions',
+            \ 'coc-pyright',
             \ 'coc-tsserver',
             \ 'coc-json',
             \ 'coc-html',
-            \ 'coc-sh']
+            \ 'coc-sh',
+            \ 'coc-translator']
 
 " coc插件， 使用 tab 进行补全 
 inoremap <silent><expr> <TAB>
@@ -387,12 +388,37 @@ endfunction
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" coc-translator
+nmap ts <Plug>(coc-translator-p)
+vmap ts <Plug>(coc-translator-pv)
+
 "-----------------------------------------------------------------
 
 " ===
 " === tagbar
 " === 查看函数列表，需要ctags程序
 nmap <F8> :TagbarToggle<CR>
+
+"-----------------------------------------------------------------
+
+" ===
+" === nerdcommenter
+" ===
+" <leader>cc comment
+" <leader>cu uncomment
+
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 
 "-----------------------------------------------------------------
 
