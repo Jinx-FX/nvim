@@ -551,7 +551,7 @@ let g:undotree_SplitWidth = 24
 " ===
 " === indentLine
 " ===
-let g:indentLine_char = '|'
+let g:indentLine_char = '│'
 let g:indentLine_color_term = 238
 let g:indentLine_color_gui = '#FFB6C1'
 
@@ -565,6 +565,8 @@ let g:indentLine_color_gui = '#FFB6C1'
 "             - :GenTocRedcarpet 生成Redcarpet风格的目录
 "             - :其他，GenTocGitlab, GenTocMarked
 "   删除      - :RemoveToc
+noremap gt : GenTocMarked<CR>
+noremap rt : RemoveToc<CR>
 
 let g:vmt_cycle_list_item_markers = 1
 let g:vmt_fence_text = 'TOC'
