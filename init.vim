@@ -225,6 +225,12 @@ noremap <LEADER>sc :set spell!<CR>
 " find and replace (需要'g')
 noremap \s :%s//g<left><left>
 
+" Auto change directory to current dir
+autocmd BufEnter * silent! lcd %:p:h
+
+" Call figlet(这是一个软件) 写出大字图
+noremap tx :r !figlet 
+
 " press <F10> to show hlgroup
 function! SynGroup()
 	let l:s = synID(line('.'), col('.'), 1)
