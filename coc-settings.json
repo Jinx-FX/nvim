@@ -59,6 +59,7 @@
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualText": true,
     "codeLens.enable": true,
+    "list.previewHighlightGroup": "Statement",
     "coc.preferences.formatOnSaveFiletypes": [
         "javascript",
         "typescript",
@@ -74,6 +75,7 @@
         "cs",
         "prisma"
     ],
+    "signature.target": "float",
     "python.pythonPath": "~/.conda/envs/ar/bin/python",
     "translator.engines": [
         "youdao"

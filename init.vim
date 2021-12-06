@@ -398,6 +398,32 @@ vmap ts <Plug>(coc-translator-pv)
 " === tagbar
 " === 查看函数列表，需要ctags程序
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_compact = 1
+let g:tagbar_width = max([25, winwidth(0)/5])
+let g:tagbar_show_data_type = 1
+let g:tagbar_scrolloff = 10
+let g:tagbar_visibility_symbols = {
+            \ 'public'    : '+',
+            \ 'protected' : '#',
+            \ 'private'   : '-'
+            \ }
+let g:tagbar_scopestrs = {
+    \    'class': "\uf0e8",
+    \    'const': "\uf8ff",
+    \    'constant': "\uf8ff",
+    \    'enum': "\uf702",
+    \    'field': "\uf30b",
+    \    'func': "\uf794",
+    \    'function': "\uf794",
+    \    'getter': "\ufab6",
+    \    'implementation': "\uf776",
+    \    'interface': "\uf7fe",
+    \    'map': "\ufb44",
+    \    'member': "\uf02b",
+    \    'method': "\uf6a6",
+    \    'setter': "\uf7a9",
+    \    'variable': "\uf71b",
+    \ }
 
 "-----------------------------------------------------------------
 
@@ -497,6 +523,7 @@ noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭
 " === 几个功能都差不多，不过 *Toggle 使用最好，可以控制开启和关闭
 " nnoremap tt :NERDTreeFocus<CR>
 " nnoremap <C-n> :NERDTree<CR>
+let NERDTreeWinSize = 25
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR> " 返回当前文件路径
 
