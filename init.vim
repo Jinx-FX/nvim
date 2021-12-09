@@ -315,6 +315,7 @@ Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
 Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'preservim/nerdcommenter' " 注释
+Plug 'jiangmiao/auto-pairs' "括号等成对出现或删除
 
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
