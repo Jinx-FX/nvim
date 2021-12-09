@@ -124,7 +124,6 @@ set tabstop=4 " 设置Tab长度为4空格
 set shiftwidth=4 " 设置自动缩进长度为4空格
 set softtabstop=4
 set autoindent " 继承前一行的缩进方式，适用于多行注释
-set cindent " c格式的缩进
 
 " 显示空格
 set list
