@@ -25,6 +25,7 @@ endif
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
 noremap ; :
+imap jk <Esc>
 
 " === useful command
 "normal: Ctrl+o ：回到之前光标所在位置
