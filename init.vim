@@ -323,7 +323,10 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " 生成目录
 
 " Git
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' "行内状态"
+
+" 其他
+Plug 'voldikss/vim-floaterm' "浮动终端"
 
 call plug#end()
 
@@ -593,5 +596,16 @@ nnoremap <LEADER>gf :GitGutterFold<CR> "折叠所有除代码块以外的行
 nnoremap H :GitGutterPreviewHunk<CR> "在当前行显示 Git 代码块
 nnoremap <LEADER>g- :GitGutterPrevHunk<CR> "去往上一个git代码块
 nnoremap <LEADER>g= :GitGutterNextHunk<CR> "去往下一个git代码块
+
+"-----------------------------------------------------------------
+
+" ==
+" == vim-floaterm
+" ==
+let g:floaterm_keymap_new = '<leader>ft'
+let g:floaterm_keymap_kill = '<leader>fk'
+" Set floating window border line color to gray, and background to orange
+hi FloatermBorder guibg=gray guifg=cyan
+autocmd User FloatermOpen        " triggered after opening a new/existed floaterm
 
 "-----------------------------------------------------------------
