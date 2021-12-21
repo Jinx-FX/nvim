@@ -312,7 +312,7 @@ Plug 'mbbill/undotree' "文件修改历史
 Plug 'mg979/vim-xtabline' "精致的顶栏
 
 " Editor Enhancement
-Plug 'jeffkreeftmeijer/vim-numbertoggle' "相对索引
+Plug 'jeffkreeftmeijer/vim-numbertoggle' "相比于默认设置，可以让相对索引只在当前使用窗口保持
 Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'preservim/nerdcommenter' " 注释
 Plug 'jiangmiao/auto-pairs' "括号等成对出现或删除
