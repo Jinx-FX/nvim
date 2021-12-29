@@ -317,6 +317,9 @@ Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'preservim/nerdcommenter' " 注释
 Plug 'jiangmiao/auto-pairs' "括号等成对出现或删除
 
+" For general writing
+Plug 'junegunn/goyo.vim'
+
 " Markdown
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] } " 表格
@@ -401,6 +404,14 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " coc-translator
 nmap ts <Plug>(coc-translator-p)
 vmap ts <Plug>(coc-translator-pv)
+
+"-----------------------------------------------------------------
+
+" ===
+" === goyo
+" ===
+map <LEADER>gy :Goyo<CR>
+map <LEADER>gq :Goyo!<CR>
 
 "-----------------------------------------------------------------
 
