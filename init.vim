@@ -299,7 +299,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Pretty Dress
-Plug 'theniceboy/nvim-deus'
+Plug 'theniceboy/nvim-deus' " 主题配色
+Plug 'ryanoasis/vim-devicons' " 文件图标
 
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
@@ -325,6 +326,7 @@ Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] 
 
 " Git
 Plug 'airblade/vim-gitgutter' "行内状态"
+Plug 'Xuyuanp/nerdtree-git-plugin' "git在文件树中显示"
 
 " 其他
 Plug 'voldikss/vim-floaterm' "浮动终端"
@@ -547,6 +549,27 @@ let NERDTreeWinSize = 25
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR> " 返回当前文件路径
 
+"-----------------------------------------------------------------
+
+" ===
+" === vim-table-mode
+" ===
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+" let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
+let g:NERDTreeGitStatusUseNerdFonts = 1
+" let g:NERDTreeGitStatusConcealBrackets = 1
+" let g:NERDTreeGitStatusShowClean = 1
 "-----------------------------------------------------------------
 
 " ===
