@@ -54,9 +54,6 @@ source ~/.config/nvim/_machine_specific.vim
 " === Editor behavior
 " ===
 
-" 设置字体 和 字体大小;与终端一直，无法修改
-" set guifont=Source\ Code\ Pro\ 12
-
 " == yank and paste
 " 访问系统剪贴板 neovim need 系统剪贴板工具
 " 用包管理器安装一个用于管理系统剪贴板的命令行工具(xsel或xclip)即可!
@@ -217,7 +214,7 @@ noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert " 打开终端默认输入
 tnoremap <C-N> <C-\><C-N> "退出终端输入模式
-tnoremap <C-O> <C-\><C-N><C-O> "退出终端
+tnoremap <C-O> <C-\><C-N><C-O> "退出终端并返回当前文件
 
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
@@ -232,6 +229,7 @@ autocmd BufEnter * silent! lcd %:p:h
 noremap tx :r !figlet 
 
 " press <F10> to show hlgroup
+" 提示相关信息
 function! SynGroup()
 	let l:s = synID(line('.'), col('.'), 1)
 	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
@@ -535,7 +533,8 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " ===
 " === vim-table-mode
 " ===
-noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭
+noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭,启用表格会有相应反应
+let g:table_mode_realign_map = '<Leader>tr'
 
 "-----------------------------------------------------------------
 

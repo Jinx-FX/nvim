@@ -5,9 +5,9 @@ autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>"_c4
 " 消除 <++>, 并换行,只能找其当行之后的
 autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
 
-autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter> "细线 分隔线 适用于标题
-autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>   "粗线 分隔线 适用于段落
+autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter> " 分隔线
 
+autocmd Filetype markdown inoremap <buffer> ,l ==== <++><Esc>F=hi
 autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
 autocmd Filetype markdown inoremap <buffer> ,s ~~~~ <++><Esc>F~hi
 autocmd Filetype markdown inoremap <buffer> ,i ** <++><Esc>F*i
