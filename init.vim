@@ -71,8 +71,15 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 
-set mouse=a " 可使用
 syntax on " 自动语法高亮
+" Enable cursor line position tracking:
+set cursorline
+" Remove the underline from enabling cursorline:
+highlight clear CursorLine
+" Set line numbering to red background:
+highlight CursorLineNR ctermbg=red
+
+set mouse=a " 可使用鼠标
 set scrolloff=5 " 底部永远预留 5 行
 set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set hlsearch " 搜索时高亮显示被找到的文本
@@ -304,7 +311,7 @@ Plug 'ryanoasis/vim-devicons' " 文件图标
 
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
-Plug 'majutsushi/tagbar' " 函数和变量信息
+Plug 'liuchengxu/vista.vim' "函数和变量信息"
 Plug 'Jinx-FX/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
@@ -416,35 +423,26 @@ map <LEADER>gq :Goyo!<CR>
 "-----------------------------------------------------------------
 
 " ===
-" === tagbar
-" === 查看函数列表，需要ctags程序
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_compact = 1
-let g:tagbar_width = max([25, winwidth(0)/5])
-let g:tagbar_show_data_type = 1
-let g:tagbar_scrolloff = 10
-let g:tagbar_visibility_symbols = {
-            \ 'public'    : '+',
-            \ 'protected' : '#',
-            \ 'private'   : '-'
-            \ }
-let g:tagbar_scopestrs = {
-    \    'class': "\uf0e8",
-    \    'const': "\uf8ff",
-    \    'constant': "\uf8ff",
-    \    'enum': "\uf702",
-    \    'field': "\uf30b",
-    \    'func': "\uf794",
-    \    'function': "\uf794",
-    \    'getter': "\ufab6",
-    \    'implementation': "\uf776",
-    \    'interface': "\uf7fe",
-    \    'map': "\ufb44",
-    \    'member': "\uf02b",
-    \    'method': "\uf6a6",
-    \    'setter': "\uf7a9",
-    \    'variable': "\uf71b",
-    \ }
+" === Vista.vim
+" ===
+noremap <LEADER>v :Vista!!<CR>
+noremap F :silent! Vista finder coc<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'coc' "可选的还有ctags"
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
+" function! NearestMethodOrFunction() abort
+    " return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
+" set statusline+=%{NearestMethodOrFunction()}
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+let g:scrollstatus_size = 15
 
 "-----------------------------------------------------------------
 
@@ -589,7 +587,7 @@ let g:undotree_SplitWidth = 24
 " ===
 " === indentLine
 " ===
-let g:indentLine_char = '│'
+let g:indentLine_char = '|'
 let g:indentLine_color_term = 238
 let g:indentLine_color_gui = '#FFB6C1'
 

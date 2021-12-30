@@ -44,7 +44,7 @@
         + [undotree（对比各版本文件信息）](#undotree（对比各版本文件信息）)
     - [拓展环境](#拓展环境)
         + [vim-floaterm（浮动终端）](#vim-floaterm（浮动终端）)
-        + [tagbar（函数和变量等信息）](#tagbar（函数和变量等信息）)
+        + [vista（函数和变量等信息）](#vista（函数和变量等信息）)
         + [nerdtree（文件浏览）](#nerdtree（文件浏览）)
 
 <!-- /TOC -->
@@ -246,10 +246,11 @@
 | `Space` `f` `t` | 打开 |
 | `Space` `f` `k` | 关闭 |
 
-#### [tagbar（函数和变量等信息）](https://github.com/majutsushi/tagbar)
-| 快捷键 | 行为       |
-|--------|------------|
-| `<F8>` | 开启和关闭 |
+#### [vista（函数和变量等信息）](https://github.com/liuchengxu/vista.vim)
+| 快捷键      | 行为         |
+|-------------|--------------|
+| `Space` `v` | 开启和关闭   |
+| `F`         | 函数变量搜索 |
 
 #### [nerdtree（文件浏览）](https://github.com/preservim/nerdtree)
 | 快捷键     | 行为             |
