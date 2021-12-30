@@ -308,6 +308,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Pretty Dress
 Plug 'theniceboy/nvim-deus' " 主题配色
 Plug 'ryanoasis/vim-devicons' " 文件图标
+Plug 'mg979/vim-xtabline' "精致的顶栏
+Plug 'luochen1990/rainbow' "彩色括号"
 
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
@@ -315,7 +317,6 @@ Plug 'liuchengxu/vista.vim' "函数和变量信息"
 Plug 'Jinx-FX/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
-Plug 'mg979/vim-xtabline' "精致的顶栏
 
 " Editor Enhancement
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "相比于默认设置，可以让相对索引只在当前使用窗口保持
@@ -419,6 +420,13 @@ vmap ts <Plug>(coc-translator-pv)
 " ===
 map <LEADER>gy :Goyo<CR>
 map <LEADER>gq :Goyo!<CR>
+
+"-----------------------------------------------------------------
+
+" ===
+" === rainbow
+" ===
+let g:rainbow_active = 1
 
 "-----------------------------------------------------------------
 
