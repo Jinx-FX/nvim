@@ -323,6 +323,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle' "相比于默认设置，可以让相�
 Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'preservim/nerdcommenter' " 注释
 Plug 'jiangmiao/auto-pairs' "括号等成对出现或删除
+Plug 'godlygeek/tabular' " ga, or :Tabularize <regex> to align 。用于对齐
 
 " For general writing
 Plug 'junegunn/goyo.vim'
@@ -331,6 +332,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " 预览
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] } " 表格
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " 生成目录
+Plug 'dkarter/bullets.vim' "自动列表序号递增"
 
 " Git
 Plug 'airblade/vim-gitgutter' "行内状态"
@@ -539,10 +541,29 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 "-----------------------------------------------------------------
 
 " ===
+" === Bullets.vim
+" ===
+let g:bullets_enabled_file_types = [
+			\ 'markdown',
+			\ 'text',
+			\ 'gitcommit',
+			\ 'scratch'
+			\]
+
+"-----------------------------------------------------------------
+
+" ===
 " === vim-table-mode
 " ===
 noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭,启用表格会有相应反应
 let g:table_mode_realign_map = '<Leader>tr'
+
+"-----------------------------------------------------------------
+
+" ===
+" === tabular
+" ===
+vmap ga :Tabularize /
 
 "-----------------------------------------------------------------
 

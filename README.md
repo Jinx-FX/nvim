@@ -39,6 +39,7 @@
         + [vim-markdown-toc（生成markdown目录）](#vim-markdown-toc（生成markdown目录）)
         + [nerdcommenter（注释）](#nerdcommenter（注释）)
         + [xtabline（精致的顶栏）](#xtabline（精致的顶栏）)
+        + [tabular（文本对齐）](#tabular（文本对齐）)
     - [Git](#git)
         + [GitGutter（文本内git提示）](#gitgutter（文本内git提示）)
         + [undotree（对比各版本文件信息）](#undotree（对比各版本文件信息）)
@@ -224,6 +225,10 @@
 |---------|--------------------|
 | `\` `p` | 显示当前文件的路径 |
 
+#### [tabular（文本对齐）](https://github.com:godlygeek/tabular)
+| 快捷键  | 行为                                             |
+|---------|--------------------------------------------------|
+| `g` `a` | Tabularize <regex> to align (按照输入的标志对齐) |
 
 ### Git
 #### [GitGutter（文本内git提示）](https://github.com/airblade/vim-gitgutter)
