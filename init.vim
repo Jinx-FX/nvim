@@ -235,13 +235,13 @@ autocmd BufEnter * silent! lcd %:p:h
 " Call figlet(这是一个软件) 写出大字图
 noremap tx :r !figlet 
 
-" press <F10> to show hlgroup
+" press M to show hlgroup
 " 提示相关信息
 function! SynGroup()
 	let l:s = synID(line('.'), col('.'), 1)
 	echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
-map <F10> :call SynGroup()<CR>
+map M :call SynGroup()<CR>
 
 " Compile function
 noremap r :call CompileRunGcc()<CR>
