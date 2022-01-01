@@ -215,13 +215,14 @@ noremap tsl :+tabmove<CR>
 
 " === term
 " === Opening a terminal window
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res -5<CR>:term<CR>
 
 " === Terminal Behaviors
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert " 打开终端默认输入
 tnoremap <C-N> <C-\><C-N> "退出终端输入模式
-tnoremap <C-O> <C-\><C-N><C-O> "退出终端并返回当前文件
+" <C-O> 接在上语句之后本会返回当前文件，这里改为了直接退出终端
+tnoremap <C-O> <C-\><C-N>:q<CR> "退出终端
 
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
@@ -312,8 +313,8 @@ Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'luochen1990/rainbow' "彩色括号"
 Plug 'hardcoreplayers/spaceline.vim' "状态栏"
 
-" 状态栏等界面信息
-Plug 'mhinz/vim-startify' "开始菜单
+" 界面信息
+Plug 'hardcoreplayers/dashboard-nvim' "开始菜单"
 Plug 'liuchengxu/vista.vim' "函数和变量信息"
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
@@ -337,6 +338,12 @@ Plug 'dkarter/bullets.vim' "自动列表序号递增"
 " Git
 Plug 'airblade/vim-gitgutter' "行内状态"
 Plug 'Xuyuanp/nerdtree-git-plugin' "git在文件树中显示"
+
+" File navigation
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'kevinhwang91/rnvimr'
 
 " 其他
 Plug 'voldikss/vim-floaterm' "浮动终端"
@@ -408,12 +415,129 @@ endfunction
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>a  <Plug>(coc-format-selected)
+nmap <leader>a  <Plug>(coc-format-selected)
 
 " coc-translator
 nmap ts <Plug>(coc-translator-p)
 vmap ts <Plug>(coc-translator-pv)
+
+"-----------------------------------------------------------------
+
+" ===
+" === Leaderf
+" ===
+nnoremap <c-p> :LeaderfFile<CR>
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewCode = 1
+let g:Lf_ShowHidden = 1
+let g:Lf_ShowDevIcons = 1
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.git', 'vendor', 'node_modules'],
+        \ 'file': ['__vim_project_root', 'class']
+        \}
+let g:Lf_UseMemoryCache = 0
+let g:Lf_UseCache = 0
+
+"-----------------------------------------------------------------
+
+" ===
+" === rnvimr
+" ===
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+let g:rnvimr_draw_border = 0
+let g:rnvimr_bw_enable = 1
+highlight link RnvimrNormal CursorLine
+nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+let g:rnvimr_action = {
+            \ '<C-t>': 'NvimEdit tabedit',
+            \ '<C-x>': 'NvimEdit split',
+            \ '<C-v>': 'NvimEdit vsplit',
+            \ 'gw': 'JumpNvimCwd',
+            \ 'yw': 'EmitRangerCwd'
+            \ }
+let g:rnvimr_layout = { 'relative': 'editor',
+            \ 'width': &columns,
+            \ 'height': &lines,
+            \ 'col': 0,
+            \ 'row': 0,
+            \ 'style': 'minimal' }
+let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+
+"-----------------------------------------------------------------
+
+" ===
+" === FZF
+" ===
+" 查找文件
+noremap <silent> <C-e> :Files<CR>
+"查找文件内容"
+noremap <silent> ff :Rg<CR>
+"文件历史记录"
+noremap <silent> <C-h> :History<CR>
+" noremap <C-t> :BTags<CR>
+" noremap <silent> <C-l> :Lines<CR>
+"切换打开过的文件"
+noremap <silent> <C-w> :Buffers<CR>
+"vim comment记录"
+noremap <leader>; :History:<CR>
+
+let g:fzf_preview_window = 'right:60%'
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
+" 显示运行过的文件，确认便消除
+noremap <c-d> :BD<CR>
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+
+"-----------------------------------------------------------------
+
+" ===
+" === dashboard
+" ===
+let g:dashboard_default_executive ='fzf'
+" nmap <Leader>ss :<C-u>SessionSave<CR>
+" nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+let g:dashboard_custom_header=[
+    \'',
+    \'    ████▌█████▌█ ████████▐▀██▀    ',
+    \'  ▄█████ █████▌ █ ▀██████▌█▄▄▀▄   ',
+    \'  ▌███▌█ ▐███▌▌  ▄▄ ▌█▌███▐███ ▀  ',
+    \' ▐ ▐██  ▄▄▐▀█   ▐▄█▀▌█▐███▐█      ',
+    \'   ███ ▌▄█▌  ▀  ▀██  ▀██████▌     ',
+    \'    ▀█▌▀██▀ ▄         ███▐███     ',
+    \'     ██▌             ▐███████▌    ',
+    \'     ███     ▀█▀     ▐██▐███▀▌    ',
+    \'     ▌█▌█▄         ▄▄████▀ ▀      ',
+    \'       █▀██▄▄▄ ▄▄▀▀▒█▀█           ',
+    \'',
+    \]
 
 "-----------------------------------------------------------------
 
