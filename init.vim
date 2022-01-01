@@ -310,11 +310,11 @@ Plug 'theniceboy/nvim-deus' " 主题配色
 Plug 'ryanoasis/vim-devicons' " 文件图标
 Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'luochen1990/rainbow' "彩色括号"
+Plug 'hardcoreplayers/spaceline.vim' "状态栏"
 
 " 状态栏等界面信息
 Plug 'mhinz/vim-startify' "开始菜单
 Plug 'liuchengxu/vista.vim' "函数和变量信息"
-Plug 'Jinx-FX/eleline.vim' "状态栏
 Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
 
@@ -489,10 +489,9 @@ noremap \p :echo expand('%:p')<CR> "显示当前位置
 
 "-----------------------------------------------------------------
 " ===
-" === eleline.vim
+" === spaceline.vim
 " ===
-" 若有 powerline font 字体，置为 1
-let g:eleline_powerline_fonts = 0
+let g:spaceline_colorscheme = 'space'
 
 "-----------------------------------------------------------------
 " ===
@@ -579,7 +578,7 @@ nnoremap <C-f> :NERDTreeFind<CR> " 返回当前文件路径
 "-----------------------------------------------------------------
 
 " ===
-" === vim-table-mode
+" === vim-devicons
 " ===
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
@@ -595,7 +594,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 " let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusUseNerdFonts = 1
-" let g:NERDTreeGitStatusConcealBrackets = 1
 " let g:NERDTreeGitStatusShowClean = 1
 
 "-----------------------------------------------------------------
