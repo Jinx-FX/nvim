@@ -222,6 +222,7 @@ let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert " 打开终端默认输入
 tnoremap <C-N> <C-\><C-N> "退出终端输入模式
 " <C-O> 接在上语句之后本会返回当前文件，这里改为了直接退出终端
+" 在普通模式输入<C-O>会返回当前文件
 tnoremap <C-O> <C-\><C-N>:q<CR> "退出终端
 
 " Spelling Check with <space>sc
@@ -312,6 +313,7 @@ Plug 'ryanoasis/vim-devicons' " 文件图标
 Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'luochen1990/rainbow' "彩色括号"
 Plug 'hardcoreplayers/spaceline.vim' "状态栏"
+Plug 'wincent/terminus' "终端优化"
 
 " 界面信息
 Plug 'hardcoreplayers/dashboard-nvim' "开始菜单"
@@ -341,9 +343,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin' "git在文件树中显示"
 
 " File navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'kevinhwang91/rnvimr'
+Plug 'junegunn/fzf.vim' "模糊文件和文件内容等查找"
+Plug 'kevinhwang91/rnvimr' "让nvim可以操作ranger"
 
 " 其他
 Plug 'voldikss/vim-floaterm' "浮动终端"
@@ -425,32 +426,12 @@ vmap ts <Plug>(coc-translator-pv)
 "-----------------------------------------------------------------
 
 " ===
-" === Leaderf
-" ===
-nnoremap <c-p> :LeaderfFile<CR>
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PreviewCode = 1
-let g:Lf_ShowHidden = 1
-let g:Lf_ShowDevIcons = 1
-let g:Lf_UseVersionControlTool = 0
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_WildIgnore = {
-        \ 'dir': ['.git', 'vendor', 'node_modules'],
-        \ 'file': ['__vim_project_root', 'class']
-        \}
-let g:Lf_UseMemoryCache = 0
-let g:Lf_UseCache = 0
-
-"-----------------------------------------------------------------
-
-" ===
 " === rnvimr
 " ===
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
-let g:rnvimr_draw_border = 0
 let g:rnvimr_bw_enable = 1
+let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
 highlight link RnvimrNormal CursorLine
 nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
 let g:rnvimr_action = {
@@ -460,13 +441,15 @@ let g:rnvimr_action = {
             \ 'gw': 'JumpNvimCwd',
             \ 'yw': 'EmitRangerCwd'
             \ }
-let g:rnvimr_layout = { 'relative': 'editor',
-            \ 'width': &columns,
-            \ 'height': &lines,
-            \ 'col': 0,
-            \ 'row': 0,
-            \ 'style': 'minimal' }
-let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+let g:rnvimr_layout = {
+            \ 'relative': 'editor',
+            \ 'width': float2nr(round(0.7 * &columns)),
+            \ 'height': float2nr(round(0.7 * &lines)),
+            \ 'col': float2nr(round(0.15 * &columns)),
+            \ 'row': float2nr(round(0.15 * &lines)),
+            \ 'style': 'minimal'
+            \ }
+let g:rnvimr_presets = [{'width': 0.800, 'height': 0.800}]
 
 "-----------------------------------------------------------------
 
@@ -738,9 +721,11 @@ let g:undotree_SplitWidth = 24
 " ===
 " === indentLine
 " ===
+let g:indentLine_enabled = 0
+noremap T :IndentLinesToggle<CR>
 let g:indentLine_char = '|'
-let g:indentLine_color_term = 238
-let g:indentLine_color_gui = '#FFB6C1'
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#EE82EE'
 
 "-----------------------------------------------------------------
 
@@ -785,10 +770,12 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR> "去往下一个git代码块
 " ==
 " == vim-floaterm
 " ==
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
 let g:floaterm_keymap_new = '<leader>ft'
 let g:floaterm_keymap_kill = '<leader>fk'
 " Set floating window border line color to gray, and background to orange
-hi FloatermBorder guibg=gray guifg=cyan
+hi FloatermBorder guifg=cyan
 autocmd User FloatermOpen        " triggered after opening a new/existed floaterm
 
 "-----------------------------------------------------------------
