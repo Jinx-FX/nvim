@@ -308,12 +308,12 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Pretty Dress
-Plug 'theniceboy/nvim-deus' " 主题配色
+Plug 'glepnir/zephyr-nvim' "主题配色"
+Plug 'nvim-treesitter/nvim-treesitter' "语法高亮"
 Plug 'ryanoasis/vim-devicons' " 文件图标
 Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'luochen1990/rainbow' "彩色括号"
 Plug 'hardcoreplayers/spaceline.vim' "状态栏"
-Plug 'wincent/terminus' "终端优化"
 
 " 界面信息
 Plug 'hardcoreplayers/dashboard-nvim' "开始菜单"
@@ -603,7 +603,7 @@ let g:spaceline_colorscheme = 'space'
 "-----------------------------------------------------------------
 " ===
 " === Dress my nvim
-" === vim-deus
+" === zephyr
 set t_Co=256
 
 set termguicolors " enable true colors support
@@ -614,8 +614,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
+colorscheme zephyr
 
 hi NonText ctermfg=gray guifg=grey10
 hi SpecialKey ctermfg=blue guifg=grey70
