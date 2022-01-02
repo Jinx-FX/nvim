@@ -35,6 +35,7 @@ imap jk <Esc>
 "normal: u : 撤销
 "normal: Ctrl+r: 反撤销
 "insert: Ctrl+c : <esc>
+"*: 在关键字之间跳转
 
 "-----------------------------------------------------------------
 
@@ -308,8 +309,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Pretty Dress
-Plug 'glepnir/zephyr-nvim' "主题配色"
-Plug 'nvim-treesitter/nvim-treesitter' "语法高亮"
+Plug 'theniceboy/nvim-deus' "主题配色"
 Plug 'ryanoasis/vim-devicons' " 文件图标
 Plug 'mg979/vim-xtabline' "精致的顶栏
 Plug 'luochen1990/rainbow' "彩色括号"
@@ -458,12 +458,14 @@ let g:rnvimr_presets = [{'width': 0.800, 'height': 0.800}]
 " ===
 " 查找文件
 noremap <silent> <C-e> :Files<CR>
-"查找文件内容"
+"查找工作区文件内容"
 noremap <silent> ff :Rg<CR>
 "文件历史记录"
 noremap <silent> <C-h> :History<CR>
-" noremap <C-t> :BTags<CR>
-" noremap <silent> <C-l> :Lines<CR>
+" 查找当前文件函数和变量等
+noremap tt :BTags<CR>
+" 查找当前文件行内内容
+noremap <silent> <C-l> :Lines<CR>
 "切换打开过的文件"
 noremap <silent> <C-w> :Buffers<CR>
 "vim comment记录"
@@ -603,7 +605,7 @@ let g:spaceline_colorscheme = 'space'
 "-----------------------------------------------------------------
 " ===
 " === Dress my nvim
-" === zephyr
+" === deus
 set t_Co=256
 
 set termguicolors " enable true colors support
@@ -614,7 +616,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
-colorscheme zephyr
+colorscheme deus
 
 hi NonText ctermfg=gray guifg=grey10
 hi SpecialKey ctermfg=blue guifg=grey70
@@ -661,7 +663,6 @@ let g:bullets_enabled_file_types = [
 " === vim-table-mode
 " ===
 noremap <LEADER>tm :TableModeToggle<CR>  " 启用与关闭,启用表格会有相应反应
-let g:table_mode_realign_map = '<Leader>tr'
 
 "-----------------------------------------------------------------
 
@@ -759,10 +760,10 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▒'
 " autocmd BufWritePost * GitGutter
-nnoremap <LEADER>gf :GitGutterFold<CR> "折叠所有除代码块以外的行
+nnoremap <LEADER>gf :GitGutterFold<CR> "折叠所有除git代码块以外的行
 nnoremap H :GitGutterPreviewHunk<CR> "在当前行显示 Git 代码块
-nnoremap <LEADER>g- :GitGutterPrevHunk<CR> "去往上一个git代码块
-nnoremap <LEADER>g= :GitGutterNextHunk<CR> "去往下一个git代码块
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR> "去往上一个git版本
+nnoremap <LEADER>g= :GitGutterNextHunk<CR> "去往下一个git版本
 
 "-----------------------------------------------------------------
 
