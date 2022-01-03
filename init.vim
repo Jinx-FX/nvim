@@ -71,6 +71,17 @@ vnoremap ,y "+y
 " paste system clipboard
 nnoremap ,p "+p
 
+" vim-numbertoggle - Automatic toggling between 'hybrid' and absolute line numbers
+" 相比于默认设置，可以让相对索引只在当前使用窗口保持
+" Maintainer:        <https://jeffkreeftmeijer.com>
+" 来自于 Plug 'jeffkreeftmeijer/vim-numbertoggle' "
+" 由于太小了，这里直接复制了
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
 set nocompatible " 让 vim 抛弃以前的不常用功能
 " 提高 vim 的兼容性
 filetype on
@@ -328,7 +339,6 @@ Plug 'preservim/nerdtree' "文件树
 Plug 'mbbill/undotree' "文件修改历史
 
 " Editor Enhancement
-Plug 'jeffkreeftmeijer/vim-numbertoggle' "相比于默认设置，可以让相对索引只在当前使用窗口保持
 Plug 'Yggdroot/indentLine' "缩进增强显示
 Plug 'preservim/nerdcommenter' " 注释
 Plug 'jiangmiao/auto-pairs' "括号等成对出现或删除
