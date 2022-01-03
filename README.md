@@ -216,7 +216,7 @@
 | `Ctrl` `l`  | 查找当前文件行内内容         |
 | `Ctrl` `h`  | 文件历史记录                 |
 | `Space` `;` | vim comment记录              |
-| `Ctrl` `w`  | 切换打开过的文件             |
+| `Ctrl` `x`  | 切换打开过的文件             |
 | `Ctrl` `d`  | 显示运行过的文件，确认便消除 |
 
 #### [rnivmr（在 nvim 中打开 ranger）](https://github.com/kevinhwang91/rnvimr)
