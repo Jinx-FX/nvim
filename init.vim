@@ -483,7 +483,7 @@ noremap tt :BTags<CR>
 " 查找当前文件行内内容
 noremap <silent> <C-l> :Lines<CR>
 "切换打开过的文件"
-noremap <silent> <C-w> :Buffers<CR>
+noremap <silent> <C-x> :Buffers<CR>
 "vim comment记录"
 noremap <leader>; :History:<CR>
 
