@@ -25,9 +25,9 @@ endif
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
 noremap ; :
-imap jk <Esc>
 
 " === useful command
+" <Esc> 的多选项: Ctrl + [ ; 修改 caplock 为esc ; Ctrl + c(不推荐)
 "normal: Ctrl+o ：回到之前光标所在位置
 "normal: Ctrl+i ：回到之后光标所在位置
 "normal: Ctrl+c : qa! press<enter> to quit nvim and abandon all you had done
@@ -55,7 +55,13 @@ source ~/.config/nvim/_machine_specific.vim
 " === Editor behavior
 " ===
 
-" == yank and paste
+" 当从输入模式切换为普通模式时，输入法自动切换为英文输入法
+" 当再次切换回去时，保持原来的输入法
+let s:fcitx_cmd = executable("fcitx5-remote") ? "fcitx5-remote" : "fcitx-remote"
+autocmd InsertLeave * let b:fcitx = system(s:fcitx_cmd) | call system(s:fcitx_cmd.' -c')
+autocmd InsertEnter * if exists('b:fcitx') && b:fcitx == 2 | call system(s:fcitx_cmd.' -o') | endif
+
+" yank and paste
 " 访问系统剪贴板 neovim need 系统剪贴板工具
 " 用包管理器安装一个用于管理系统剪贴板的命令行工具(xsel或xclip)即可!
 " 在终端中执行命令:sudo pacman -S xsel
