@@ -1,6 +1,6 @@
 # <center>我使用的 [NeoVim](https://neovim.io) 配置文件</center>
 
-**持续更新中**
+**停更中，等我换个类unix电脑再战:-)**
 
 以下为使用说明
 
