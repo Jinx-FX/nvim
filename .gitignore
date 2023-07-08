@@ -1,3 +1,12 @@
-_machine_specific.vim
+*.swp
+.DS_Store
+view/
 plugged/
+sessions/
+autoload/plug.vim.old
 tmp/
+.netrwhist
+_machine_specific.vim
+.vim-bookmarks
+
+lua/config/machine_specific.lua
