@@ -12,11 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	require("config.plugins.fzf"),
 	require("config.plugins.colorscheme"),
 	require("config.plugins.scrollbar"),
 	require("config.plugins.treesitter"),
 	require("config.plugins.git"),
 	require("config.plugins.search"),
 	require("config.plugins.indent"),
+	require("config.plugins.statusline"),
+	require("config.plugins.tabline"),
+	require("config.plugins.wilder"),
+	require("config.plugins.joshuto"),
 	{ "dstein64/vim-startuptime" },
 })
