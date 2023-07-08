@@ -43,8 +43,6 @@ local nmappings = {
 	{ from = "tmh",           to = ":-tabmove<CR>", },
 	{ from = "tml",           to = ":+tabmove<CR>", },
 
-	-- Joshuto
-	{ from = "R",             to = ":Joshuto<CR>" },
 }
 
 for _, mapping in ipairs(nmappings) do
