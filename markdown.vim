@@ -1,7 +1,6 @@
 setlocal shiftwidth=2 softtabstop=2 expandtab smarttab
 " 替换 <++> ,并继续输入，没有限制
 inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-inoremap <buffer> <c-e> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 " 消除 <++>, 并换行,只能找其当行之后的
 inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
 inoremap <buffer> ,n ---<Enter><Enter>
