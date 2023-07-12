@@ -28,5 +28,4 @@ require("lazy").setup({
 	require("config.plugins.leap"),
 	require("config.plugins.surround"),
 	require("config.plugins.trouble"),
-	{ "dstein64/vim-startuptime" },
 })
