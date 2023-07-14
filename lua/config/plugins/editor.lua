@@ -1,16 +1,3 @@
-vim.cmd([[
-fun! s:MakePair()
-	let line = getline('.')
-	let len = strlen(line)
-	if line[len - 1] == ";" || line[len - 1] == ","
-		normal! lx$P
-	else
-		normal! lx$p
-	endif
-endfun
-inoremap <c-u> <ESC>:call <SID>MakePair()<CR>
-]])
-
 return {
 	{
 		"RRethy/vim-illuminate",
@@ -30,13 +17,6 @@ return {
 		lazy = false,
 		ft = { "markdown", "txt" },
 	},
-	-- {
-	-- 	"psliwka/vim-smoothie",
-	-- 	init = function()
-	-- 		vim.cmd([[nnoremap <unique> <C-e> <cmd>call smoothie#do("\<C-D>") <CR>]])
-	-- 		vim.cmd([[nnoremap <unique> <C-u> <cmd>call smoothie#do("\<C-U>") <CR>]])
-	-- 	end
-	-- },
 	{
 		"NvChad/nvim-colorizer.lua",
 		opts = {
@@ -63,7 +43,7 @@ return {
 			buftypes = {},
 		}
 	},
-	-- { 'theniceboy/antovim', lazy = false, },
+  -- use <CR>
 	{ 'gcmt/wildfire.vim',  lazy = false, },
 	{
 		"fedepujol/move.nvim",
@@ -74,8 +54,8 @@ return {
 			vim.keymap.set('n', '<c-j>', ':MoveLine(-1)<CR>', opts)
 
 			-- Visual-mode commands
-			vim.keymap.set('v', '<c-K>', ':MoveBlock(1)<CR>', opts)
-			vim.keymap.set('v', '<c-J>', ':MoveBlock(-1)<CR>', opts)
+			-- vim.keymap.set('v', '<c-K>', ':MoveBlock(1)<CR>', opts)
+			-- vim.keymap.set('v', '<c-J>', ':MoveBlock(-1)<CR>', opts)
 		end
 	},
 	{
@@ -96,11 +76,6 @@ return {
 			-- vim.keymap.set("n", "sI", substitute.eol, { noremap = true })
 			-- vim.keymap.set("x", "s", substitute.visual, { noremap = true })
 		end
-	},
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async", },
-		config = function() require('ufo').setup() end
 	},
 	{
 		"windwp/nvim-autopairs",
