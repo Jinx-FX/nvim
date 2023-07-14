@@ -7,7 +7,6 @@ local nmappings = {
 
 	-- Useful actions
 	{ from = "Q",             to = ":quitall<CR>" },
-	{ from = "W",							to = ":w<CR>"},
 	{ from = ";",             to = ":",                                                                   mode = mode_nv },
 	{ from = "\\s",           to = ":%s//g<left><left>",                                                  mode = mode_nv },
 	{ from = "Y",             to = "\"+y",                                                                mode = mode_v },
