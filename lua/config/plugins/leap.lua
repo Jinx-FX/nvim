@@ -11,7 +11,7 @@ return {
 			-- Try it without this setting first, you might find you don't even miss it.
 			leap.opts.highlight_unlabeled_phase_one_targets = true
 			leap.opts.safe_labels = {}
-			leap.opts.labels = { 'a', 'r', 's', 't', 'n', 'e', 'i', 'o', 'w', 'f', 'u', 'y', 'd', 'h' }
+			-- leap.opts.labels = { 'a', 'r', 's', 't', 'n', 'e', 'i', 'o', 'w', 'f', 'u', 'y', 'd', 'h' }
 			vim.keymap.set("n", "<ESC>", function()
 				local current_window = vim.fn.win_getid()
 				leap.leap { target_windows = { current_window } }
