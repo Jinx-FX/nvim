@@ -56,7 +56,7 @@ endif
 ]])
 
 -- markdown setting
-vim.cmd([[source ~/.config/nvim/markdown.vim]])
+vim.cmd([[source ~/.config/nvim/ftplugins/markdown.vim]])
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
 
