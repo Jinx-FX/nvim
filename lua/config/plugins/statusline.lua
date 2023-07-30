@@ -14,6 +14,8 @@ local function mode_emoji()
 		emoji = "🤪"
   elseif mode == "t" then
     emoji = "😑"
+	elseif mode == 'R' then
+		emoji = "😵"
 	else
 		emoji = "🥵"
   end

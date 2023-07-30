@@ -69,12 +69,11 @@ return {
 					timer = 200,
 				},
 			})
-			-- vim.keymap.set("n", "s", substitute.operator, { noremap = true })
-			-- vim.keymap.set("n", "sh", function() substitute.operator({ motion = "e" }) end, { noremap = true })
-			-- vim.keymap.set("x", "s", require('substitute.range').visual, { noremap = true })
-			-- vim.keymap.set("n", "ss", substitute.line, { noremap = true })
-			-- vim.keymap.set("n", "sI", substitute.eol, { noremap = true })
-			-- vim.keymap.set("x", "s", substitute.visual, { noremap = true })
+			vim.keymap.set("n", "<c-s>", substitute.operator, { noremap = true })
+			vim.keymap.set("n", "<c-s>h", function() substitute.operator({ motion = "e" }) end, { noremap = true })
+			vim.keymap.set("n", "<c-s>s", substitute.line, { noremap = true })
+			vim.keymap.set("n", "<c-s>I", substitute.eol, { noremap = true })
+			vim.keymap.set("x", "<c-s>", substitute.visual, { noremap = true })
 		end
 	},
 	{

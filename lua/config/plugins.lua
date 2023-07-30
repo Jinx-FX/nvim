@@ -28,7 +28,7 @@ require("lazy").setup({
 	require("config.plugins.wilder"),
 	require("config.plugins.joshuto"),
 	-- require("config.plugins.winbar"),
-	require("config.plugins.leap"),
+	require("config.plugins.move-motion"),
 	require("config.plugins.surround"),
 	require("config.plugins.comment"),
 })
