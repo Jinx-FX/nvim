@@ -1,6 +1,5 @@
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
--- vim.o.cmdheight = 0
 vim.o.ttyfast = true
 vim.o.autochdir = true
 vim.o.exrc = true
@@ -43,6 +42,12 @@ vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
 vim.o.virtualedit = 'block'
 
+-- esc 后中文输入法切换
+-- 请注意，你需要先安装 im-select 工具，并确保它在你的 PATH 中。你可以在这里下载 im-select：https://github.com/daipeihust/im-select
+-- 此外，你需要将 com.apple.keylayout.US 替换为你的英文输入法的 ID。你可以运行 im-select 命令来查看所有可用的输入法和它们的 ID。
+vim.cmd('autocmd InsertLeave * silent !/usr/local/bin/im-select com.apple.keylayout.ABC')
+
+-- 文件缓存
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/backup
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
