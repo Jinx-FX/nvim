@@ -13,10 +13,8 @@ local nmappings = {
 	{ from = "`",             to = "~",                                                                   mode = mode_nv },
 	{ from = "c,.",           to = "c%", },
 	{ from = ",.",            to = "%",                                                                   mode = mode_nv },
-	{ from = "<c-y>",         to = "<ESC>A {}<ESC>i<CR><ESC>ko",                                          mode = mode_i },
 	{ from = "<c-a>",         to = "<ESC>A",                                                              mode = mode_i },
 	{ from = "<leader><CR>",  to = ":nohlsearch<CR>" },
-	{ from = "<leader>o",     to = "za" },
 	{ from = ",v",            to = "v%" },
 
 	-- Window & splits
