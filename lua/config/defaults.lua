@@ -36,7 +36,6 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.inccommand = 'split'
 vim.o.completeopt = 'longest,noinsert,menuone,noselect,preview'
 vim.o.completeopt = 'menuone,noinsert,noselect,preview'
--- vim.o.lazyredraw = true
 vim.o.visualbell = true
 vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
@@ -47,7 +46,7 @@ vim.o.virtualedit = 'block'
 -- 此外，你需要将 com.apple.keylayout.US 替换为你的英文输入法的 ID。你可以运行 im-select 命令来查看所有可用的输入法和它们的 ID。
 vim.cmd('autocmd InsertLeave * silent !/usr/local/bin/im-select com.apple.keylayout.ABC')
 
--- 文件缓存
+-- 文件缓存, 保存编辑历史
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/backup
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
@@ -60,12 +59,13 @@ if has('persistent_undo')
 endif
 ]])
 
--- markdown setting
-vim.cmd([[source ~/.config/nvim/ftplugins/markdown.vim]])
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
-
+-- 在打开文件后将光标移动到上次编辑的位置
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
 
-vim.cmd([[hi NonText ctermfg=gray guifg=grey10]])
+-- markdown snippets
+vim.cmd([[source ~/.config/nvim/ftplugins/markdown.vim]])
+-- md 文件开启拼写检查
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
+-- 将当前目录更改为当前文件所在的目录。
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
 

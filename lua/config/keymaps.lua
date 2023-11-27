@@ -49,7 +49,3 @@ for _, mapping in ipairs(nmappings) do
 	vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = true })
 end
 
-local function run_vim_shortcut(shortcut)
-	local escaped_shortcut = vim.api.nvim_replace_termcodes(shortcut, true, false, true)
-	vim.api.nvim_feedkeys(escaped_shortcut, 'n', true)
-end
