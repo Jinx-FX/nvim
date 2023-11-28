@@ -1,5 +1,7 @@
 return {
 	{
+		-- automatically highlighting other uses of the word under the cursor
+		-- using either LSP, Tree-sitter, or regex matching
 		"RRethy/vim-illuminate",
 		config = function()
 			require('illuminate').configure({
@@ -13,6 +15,7 @@ return {
 		end
 	},
 	{
+		-- automated bullet lists
 		"dkarter/bullets.vim",
 		lazy = false,
 		ft = { "markdown", "txt" },
@@ -43,15 +46,15 @@ return {
 			buftypes = {},
 		}
 	},
-  -- use <CR>
+  -- use <CR> select block
 	{ 'gcmt/wildfire.vim',  lazy = false, },
 	{
 		"fedepujol/move.nvim",
 		config = function()
 			local opts = { noremap = true, silent = true }
 			-- Normal-mode commands
-			vim.keymap.set('n', '<c-k>', ':MoveLine(1)<CR>', opts)
-			vim.keymap.set('n', '<c-j>', ':MoveLine(-1)<CR>', opts)
+			vim.keymap.set('n', '<c-j>', ':MoveLine(1)<CR>', opts)
+			vim.keymap.set('n', '<c-k>', ':MoveLine(-1)<CR>', opts)
 
 			-- Visual-mode commands
 			-- vim.keymap.set('v', '<c-K>', ':MoveBlock(1)<CR>', opts)
@@ -59,6 +62,7 @@ return {
 		end
 	},
 	{
+		-- better replace and exchange text
 		"gbprod/substitute.nvim",
 		config = function()
 			local substitute = require("substitute")
@@ -69,6 +73,8 @@ return {
 					timer = 200,
 				},
 			})
+			-- execute <c-s>iw to replace the current word under the cursor with the current yank,
+			-- or <c-s>ip to replace the paragraph
 			vim.keymap.set("n", "<c-s>", substitute.operator, { noremap = true })
 			vim.keymap.set("n", "<c-s>h", function() substitute.operator({ motion = "e" }) end, { noremap = true })
 			vim.keymap.set("n", "<c-s>s", substitute.line, { noremap = true })
