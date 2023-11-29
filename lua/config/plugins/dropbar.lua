@@ -54,7 +54,7 @@ return {
 					['i'] = confirm,
 					['<esc>'] = quit_curr,
 					['q'] = quit_curr,
-					['o'] = quit_curr,
+					['n'] = quit_curr,
 					['<MouseMove>'] = function()
 						local menu = api.get_current_dropbar_menu()
 						if not menu then
