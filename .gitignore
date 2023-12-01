@@ -8,5 +8,4 @@ tmp/
 .netrwhist
 _machine_specific.vim
 .vim-bookmarks
-lazy-lock.json
 lua/config/machine_specific.lua
