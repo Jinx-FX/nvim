@@ -14,6 +14,9 @@ return {
 				indent = {
 					chars = { "│", "¦", "┆", "┊", },
 					use_treesitter = false,
+					style = {
+						"#BFA6B7"
+					}
 				},
 				blank = {
 					enable = false,
