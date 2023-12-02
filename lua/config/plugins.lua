@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   require("config.plugins.editor"),
+	require("config.plugins.markdown"),
   require("config.plugins.yank"),
 	require("config.plugins.multi-cursor"),
 	require("config.plugins.fzf"),
@@ -25,7 +26,8 @@ require("lazy").setup({
 	require("config.plugins.indent"),
 	require("config.plugins.statusline"),
 	require("config.plugins.tabline"),
-	require("config.plugins.noice"),
+	require("config.plugins.notify"),
+	require("config.plugins.wilder"),
 	require("config.plugins.joshuto"),
 	require("config.plugins.dropbar"),
 	require("config.plugins.move-motion"),

@@ -67,4 +67,5 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", com
 vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
 -- Every time save the file, spaces at the end of each line are automatically removed
 vim.cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
-
+-- Whenever a new terminal buffer is opened, it automatically enters insert mode
+vim.cmd([[autocmd TermOpen term://* startinsert]])
