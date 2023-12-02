@@ -34,3 +34,6 @@ require("lazy").setup({
 	require("config.plugins.surround"),
 	require("config.plugins.comment"),
 })
+
+require("custom.compile_run")
+

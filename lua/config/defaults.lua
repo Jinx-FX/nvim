@@ -69,3 +69,14 @@ vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd 
 vim.cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
 -- Whenever a new terminal buffer is opened, it automatically enters insert mode
 vim.cmd([[autocmd TermOpen term://* startinsert]])
+vim.cmd([[
+	augroup NVIMRC
+			autocmd!
+			autocmd BufWritePost .vim.lua exec ":so %"
+	augroup END
+	" change normal in terminal
+	tnoremap <C-N> <C-\><C-N>
+	" close terminal
+	tnoremap <C-O> <C-\><C-N><C-O>
+]])
+
