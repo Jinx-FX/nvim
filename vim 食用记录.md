@@ -6,7 +6,7 @@
 执行次数 + 操作 + 范围
 次数 1,2,3
 操作 v d y c
-范围 a i w p $ " ' { ( [ t
+范围 a->all(not?) i->inner w->word s->sentence p->paragraph $ " ' { ( [ f t
 
  ni hao tang jun xin
  $('nihao')
