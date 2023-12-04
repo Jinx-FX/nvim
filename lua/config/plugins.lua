@@ -12,6 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  -- require("config.plugins.cmp"),
+  -- require("config.plugins.lsp"),
   require("config.plugins.editor"),
 	require("config.plugins.markdown"),
   require("config.plugins.yank"),

@@ -2,4 +2,3 @@
 
 - autocomplete
 - formatter
-- markdown-preview
