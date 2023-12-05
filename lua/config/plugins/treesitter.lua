@@ -7,7 +7,7 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "query", "typescript", "dart", "java", "c", "prisma", "bash", "go", "lua", "html", "vim", "json", "javascript", "css", "rust"},
+				ensure_installed = { "typescript", "dart", "java", "c", "cpp", "prisma", "bash", "go", "lua", "html", "vim", "json", "javascript", "tsx", "css", "rust", "markdown", "objc" },
 				highlight = {
 					enable = true,
 					disable = {}, -- list of language that will be disabled
@@ -28,6 +28,7 @@ return {
 		end
 	},
 	{
+		-- Show code context, func or group sucks the top
 		"nvim-treesitter/nvim-treesitter-context",
 		config = function()
 			local tscontext = require('treesitter-context')
