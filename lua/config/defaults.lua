@@ -79,4 +79,3 @@ vim.cmd([[
 	" close terminal
 	tnoremap <C-O> <C-\><C-N><C-O>
 ]])
-

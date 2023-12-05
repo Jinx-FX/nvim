@@ -18,7 +18,6 @@ M.config = {
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 			-- "nvim-telescope/telescope-ui-select.nvim",
 			'stevearc/dressing.nvim',
-			'dimaportenko/telescope-simulators.nvim',
 		},
 		config = function()
 			local builtin = require('telescope.builtin')
@@ -122,10 +121,6 @@ M.config = {
 			ts.load_extension('telescope-tabs')
 			ts.load_extension('fzf')
 
-			require("simulators").setup({
-				android_emulator = false,
-				apple_simulator = true,
-			})
 			-- ts.load_extension("ui-select")
 			local tsdap = ts.extensions.dap;
 			-- vim.keymap.set("n", "<leader>'v", tsdap.variables, m)

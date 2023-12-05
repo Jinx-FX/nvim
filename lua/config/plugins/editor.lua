@@ -46,8 +46,8 @@ return {
 			buftypes = {},
 		}
 	},
-  -- use <CR> select block
-	{ 'gcmt/wildfire.vim',  lazy = false, },
+	-- use <CR> select block
+	{ 'gcmt/wildfire.vim', lazy = false, },
 	{
 		"fedepujol/move.nvim",
 		config = function()
@@ -81,11 +81,6 @@ return {
 			vim.keymap.set("n", "<c-s>I", substitute.eol, { noremap = true })
 			vim.keymap.set("x", "<c-s>", substitute.visual, { noremap = true })
 		end
-	},
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async", },
-		config = function() require('ufo').setup() end
 	},
 	{
 		"windwp/nvim-autopairs",

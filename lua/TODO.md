@@ -1,4 +1,4 @@
 # TODO
 
 - autocomplete, lsp, dap 优化
-- formatter
+- formatter, lsp done, 优化
