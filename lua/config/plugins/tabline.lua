@@ -22,14 +22,14 @@ return {
 			tab_size = 16,
 			padding = 0,
 			separator_style = "thick",
-      offsets = {
-         {
-              filetype = "NvimTree",
-              text = "File Explorer",
-              highlight = "Directory",
-              separator = true -- use a "true" to enable the default, or set your own character
-          }
-      }
+			offsets = {
+				{
+					filetype = "NvimTree",
+					text = "File Tree",
+					highlight = "Directory",
+					separator = true     -- use a "true" to enable the default, or set your own character
+				}
+			}
 		}
 	}
 }

@@ -15,7 +15,7 @@ require("lazy").setup({
 	require("config.plugins.cmp").config,
 	require("config.plugins.lsp").config,
 	require("config.plugins.dap"),
-	require("config.plugins.telescope").config,
+	require("config.plugins.telescope"),
 	require("config.plugins.editor"),
 	require("config.plugins.markdown"),
 	require("config.plugins.go"),
