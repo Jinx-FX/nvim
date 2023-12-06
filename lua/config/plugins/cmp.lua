@@ -10,20 +10,6 @@ local limitStr = function(str)
 end
 
 local dartColonFirst = function(entry1, entry2)
-	if vim.bo.filetype ~= "dart" then
-		return nil
-	end
-	local entry1EndsWithColon = string.find(entry1.completion_item.label, ":") and entry1.source.name == 'nvim_lsp'
-	local entry2EndsWithColon = string.find(entry2.completion_item.label, ":") and entry2.source.name == 'nvim_lsp'
-	if entry1EndsWithColon and not entry2EndsWithColon then
-		return true
-	elseif not entry1EndsWithColon and entry2EndsWithColon then
-		return false
-	end
-	return nil
-end
-
-local dartColonFirst = function(entry1, entry2)
 	if vim.bo.filetype ~= "python" then
 		return nil
 	end
@@ -39,10 +25,6 @@ local dartColonFirst = function(entry1, entry2)
 	return nil
 end
 
-local label_comparator = function(entry1, entry2)
-	return entry1.completion_item.label < entry2.completion_item.label
-end
-
 local M = {}
 M.config = {
 	"hrsh7th/nvim-cmp",
@@ -53,7 +35,6 @@ M.config = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-calc",
-		-- "andersevenrud/cmp-tmux",
 		{
 			"onsails/lspkind.nvim",
 			lazy = false,
@@ -68,7 +49,6 @@ M.config = {
 				require("cmp_nvim_ultisnips").setup {}
 			end,
 		}
-		-- "L3MON4D3/LuaSnip",
 	},
 }
 
@@ -133,20 +113,17 @@ M.configfunc = function()
 	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 	local cmp = require("cmp")
 	local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-	-- local luasnip = require("luasnip")
 
 	setCompHL()
 	cmp.setup({
 		preselect = cmp.PreselectMode.None,
 		snippet = {
 			expand = function(args)
-				-- luasnip.lsp_expand(args.body)
 				vim.fn["UltiSnips#Anon"](args.body)
 			end,
 		},
 		window = {
 			completion = {
-				-- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
 				col_offset = -3,
 				side_padding = 0,
 			},
@@ -154,7 +131,6 @@ M.configfunc = function()
 		},
 		sorting = {
 			comparators = {
-				-- label_comparator,
 				dartColonFirst,
 				cmp.config.compare.offset,
 				cmp.config.compare.exact,
@@ -182,12 +158,11 @@ M.configfunc = function()
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
 			{ name = "buffer" },
+			{ name = "ultisnips" },
 		}, {
 			{ name = "path" },
 			{ name = "nvim_lua" },
 			{ name = "calc" },
-			-- { name = "luasnip" },
-			-- { name = 'tmux',    option = { all_panes = true, } },  -- this is kinda slow
 		}),
 		mapping = cmp.mapping.preset.insert({
 			['<C-o>'] = cmp.mapping.complete(),
@@ -209,7 +184,6 @@ M.configfunc = function()
 					fallback()
 				end
 			}),
-			['<c-y>'] = cmp.mapping({ i = function(fallback) fallback() end }),
 			['<c-u>'] = cmp.mapping({ i = function(fallback) fallback() end }),
 			['<CR>'] = cmp.mapping({
 				i = function(fallback)
@@ -246,6 +220,5 @@ M.configfunc = function()
 		}),
 	})
 end
-
 
 return M

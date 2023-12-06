@@ -72,20 +72,6 @@ M.config = {
 				if vim.bo[bufnr].filetype ~= "dart" then
 					require("lsp_signature").on_attach(F.signature_config, bufnr)
 				end
-				-- require("lsp-inlayhints").on_attach(client, bufnr)
-				-- vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
-				-- vim.api.nvim_create_autocmd("InsertEnter", {
-				-- 	buffer = bufnr,
-				-- 	callback = function() vim.lsp.inlay_hint(bufnr, false) end,
-				-- 	group = "lsp_augroup",
-				-- })
-				-- vim.lsp.inlay_hint(bufnr, true)
-				-- vim.api.nvim_create_autocmd("InsertLeave", {
-				-- 	buffer = bufnr,
-				-- 	callback = function() vim.lsp.inlay_hint(bufnr, true) end,
-				-- 	group = "lsp_augroup",
-				-- })
-				-- vim.cmd('highlight! link LspInlayHint Comment')
 				vim.diagnostic.config({
 					severity_sort = true,
 					underline = true,
