@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("config.plugins.cmp").config,
+	require("config.plugins.cmp"),
 	require("config.plugins.lsp").config,
 	require("config.plugins.dap"),
 	require("config.plugins.telescope").config,
