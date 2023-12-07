@@ -40,6 +40,10 @@ vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
 vim.o.virtualedit = 'block'
 
+-- global
+-- use which python3, for utlisnips
+vim.g.python3_host_prog = '/usr/local/bin/python3'
+
 -- Switch Chinese input method after `esc`
 -- Dependence: im-select. Download im-select here: https://github.com/daipeihust/im-select
 -- In addition, you need to replace com.apple.keylayout.ABC with the ID of your English input method.

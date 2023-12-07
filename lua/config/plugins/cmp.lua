@@ -96,6 +96,7 @@ return {
 				require("lspkind").init()
 			end
 		},
+		"SirVer/ultisnips",
 		{
 			"quangnguyen30192/cmp-nvim-ultisnips",
 			config = function()
