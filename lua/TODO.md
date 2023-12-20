@@ -6,3 +6,4 @@
 plugins try:
 - ray-x/navigator.lua
 - symbols-ouline.nvim
+- better mark: chentoast/marks.nvim

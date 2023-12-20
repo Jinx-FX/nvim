@@ -42,7 +42,6 @@ M.config = {
 				"lvimuser/lsp-inlayhints.nvim",
 				branch = "anticonceal",
 			},
-			-- "mjlbach/lsp_signature.nvim",
 		},
 
 		config = function()
