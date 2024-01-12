@@ -4,16 +4,14 @@ return {
 	dependencies = 'nvim-tree/nvim-web-devicons',
 	opts = {
 		options = {
-			mode = "tabs",
+			mode = "tabs", -- "buffers"|"tabs"
 			diagnostics = "nvim_lsp",
 			diagnostics_indicator = function(count, level, diagnostics_dict, context)
 				local icon = level:match("error") and " " or " "
 				return " " .. icon .. count
 			end,
 			indicator = {
-				icon = '▎', -- this should be omitted if indicator style is not 'icon'
-				-- style = 'icon' | 'underline' | 'none',
-				style = "icon",
+				style = 'underline',
 			},
 			show_buffer_close_icons = false,
 			show_close_icon = false,
@@ -21,13 +19,13 @@ return {
 			show_duplicate_prefix = false,
 			tab_size = 16,
 			padding = 0,
-			separator_style = "thick",
+			separator_style = "slant",
 			offsets = {
 				{
 					filetype = "NvimTree",
 					text = "File Tree",
 					highlight = "Directory",
-					separator = true     -- use a "true" to enable the default, or set your own character
+					separator = true -- use a "true" to enable the default, or set your own character
 				}
 			}
 		}
