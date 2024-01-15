@@ -52,6 +52,7 @@ M.config = {
 				'tsserver',
 				'eslint',
 				'gopls',
+				'jdtls',
 				'jsonls',
 				'html',
 				'clangd',
