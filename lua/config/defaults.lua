@@ -48,8 +48,7 @@ vim.g.python3_host_prog = '/usr/local/bin/python3'
 -- Dependence: im-select. Download im-select here: https://github.com/daipeihust/im-select
 -- In addition, you need to replace com.apple.keylayout.ABC with the ID of your English input method.
 -- You can run the im-select command to view all available input methods and their IDs.
--- to sogou, it is not worked
-vim.cmd('autocmd InsertLeave * silent !/usr/local/bin/im-select com.sogou.inputmethod.sogou.pinyin')
+vim.cmd('autocmd InsertLeave * silent !/usr/local/bin/im-select com.apple.keylayout.ABC')
 -- File storage, save editing history
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/backup
