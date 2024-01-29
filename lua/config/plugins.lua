@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	require("config.plugins.toggleterm"),
 	require("config.plugins.cmp"),
 	require("config.plugins.lsp").config,
 	require("config.plugins.dap"),
