@@ -1,6 +1,5 @@
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
 vim.o.ttyfast = true
 vim.o.autochdir = true
 vim.o.exrc = true
@@ -35,14 +34,25 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.inccommand = 'split'
-vim.o.completeopt = 'longest,noinsert,menuone,noselect,preview'
-vim.o.completeopt = 'menuone,noinsert,noselect,preview'
--- vim.o.lazyredraw = true
+vim.o.completeopt = 'menu,menuone,noinsert,preview'
 vim.o.visualbell = true
 vim.o.colorcolumn = '100'
 vim.o.updatetime = 100
 vim.o.virtualedit = 'block'
 
+-- global
+-- use which python3, for utlisnips
+vim.g.python3_host_prog = '/usr/local/bin/python3'
+
+-- 选中代码块高亮(需要放在colorscheme之后)
+vim.api.nvim_set_hl(0, "visual", { reverse = true })
+
+-- Switch Chinese input method after `esc`
+-- Dependence: im-select. Download im-select here: https://github.com/daipeihust/im-select
+-- In addition, you need to replace com.apple.keylayout.ABC with the ID of your English input method.
+-- You can run the im-select command to view all available input methods and their IDs.
+vim.cmd('autocmd InsertLeave * silent !/usr/local/bin/im-select com.apple.keylayout.ABC')
+-- File storage, save editing history
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/backup
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
@@ -54,39 +64,25 @@ if has('persistent_undo')
 	set undodir=$HOME/.config/nvim/tmp/undo,.
 endif
 ]])
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
-
+-- After opening the file, move the cursor to the location where it was last edited
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
-
-vim.g.terminal_color_0  = '#000000'
-vim.g.terminal_color_1  = '#FF5555'
-vim.g.terminal_color_2  = '#50FA7B'
-vim.g.terminal_color_3  = '#F1FA8C'
-vim.g.terminal_color_4  = '#BD93F9'
-vim.g.terminal_color_5  = '#FF79C6'
-vim.g.terminal_color_6  = '#8BE9FD'
-vim.g.terminal_color_7  = '#BFBFBF'
-vim.g.terminal_color_8  = '#4D4D4D'
-vim.g.terminal_color_9  = '#FF6E67'
-vim.g.terminal_color_10 = '#5AF78E'
-vim.g.terminal_color_11 = '#F4F99D'
-vim.g.terminal_color_12 = '#CAA9FA'
-vim.g.terminal_color_13 = '#FF92D0'
-vim.g.terminal_color_14 = '#9AEDFE'
+-- markdown snippets
+vim.cmd([[source ~/.config/nvim/ftplugins/markdown.vim]])
+-- Enable spell check for md files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal spell", })
+-- Change the current directory to the directory where the current file is located
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
+-- Every time save the file, spaces at the end of each line are automatically removed
+vim.cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
+-- Whenever a new terminal buffer is opened, it automatically enters insert mode
 vim.cmd([[autocmd TermOpen term://* startinsert]])
 vim.cmd([[
-augroup NVIMRC
-    autocmd!
-    autocmd BufWritePost .vim.lua exec ":so %"
-augroup END
-tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
+	augroup NVIMRC
+			autocmd!
+			autocmd BufWritePost .vim.lua exec ":so %"
+	augroup END
+	" change normal in terminal
+	tnoremap <C-N> <C-\><C-N>
+	" close terminal
+	tnoremap <C-O> <C-\><C-N><C-O>
 ]])
-
-vim.cmd([[hi NonText ctermfg=gray guifg=grey10]])
-
--- markdown setting
-vim.cmd([[source ~/.config/nvim/markdown.vim]])
-vim.cmd([[autocmd BufRead,BufNewFile *.md setlocal spell]])
